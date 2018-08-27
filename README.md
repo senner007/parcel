@@ -1,3 +1,9 @@
+
+# Custom build that adds --reload param
+[Link to pull](https://github.com/parcel-bundler/parcel/pull/443) 
+
+
+
 <p align="center">
   <a href="https://parceljs.org/" target="_blank">
     <img alt="Parcel" src="https://user-images.githubusercontent.com/19409/31321658-f6aed0f2-ac3d-11e7-8100-1587e676e0ec.png" width="749">
