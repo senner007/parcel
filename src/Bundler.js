@@ -104,6 +104,7 @@ class Bundler extends EventEmitter {
     const scopeHoist =
       options.scopeHoist !== undefined ? options.scopeHoist : false;
     return {
+      reload: typeof options.reload === 'boolean' ? options.reload : false,
       production: isProduction,
       outDir: Path.resolve(options.outDir || 'dist'),
       outFile: options.outFile || '',
@@ -375,7 +376,7 @@ class Bundler extends EventEmitter {
     }
 
     if (this.options.hmr) {
-      this.hmr = new HMRServer();
+      this.hmr = new HMRServer(this.options);
       this.options.hmrPort = await this.hmr.start(this.options);
     }
 

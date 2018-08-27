@@ -7,6 +7,9 @@ const getCertificate = require('./utils/getCertificate');
 const logger = require('./Logger');
 
 class HMRServer {
+  constructor(options = {}) {
+    this.options = options;
+  }
   async start(options = {}) {
     await new Promise(async resolve => {
       if (!options.https) {
@@ -62,8 +65,11 @@ class HMRServer {
       });
     }
 
-    const containsHtmlAsset = assets.some(asset => asset.type === 'html');
-    if (containsHtmlAsset) {
+    const isReload = this.options.reload;
+    const isReloadAsset = assets.some(asset => {
+      return isReload ? asset.type !== 'css' : asset.type === 'html';
+    });
+    if (isReloadAsset) {
       this.broadcast({
         type: 'reload'
       });
